@@ -1,8 +1,9 @@
 import type { LucideIcon } from "lucide-react";
 import {
   GuitarIcon,
-  HelpCircleIcon,
   HomeIcon,
+  Music2Icon,
+  PianoIcon,
   TimerIcon,
 } from "lucide-react";
 
@@ -39,12 +40,18 @@ export const appModules: AppModule[] = [
     badge: "Próximamente",
   },
   {
-    id: "quiz",
-    title: "Quiz",
-    href: "/quiz",
-    icon: HelpCircleIcon,
-    enabled: false,
-    badge: "Próximamente",
+    id: "notes",
+    title: "Notas",
+    href: "/notes",
+    icon: PianoIcon,
+    enabled: true,
+  },
+  {
+    id: "staff",
+    title: "Pentagrama",
+    href: "/staff",
+    icon: Music2Icon,
+    enabled: true,
   },
 ];
 

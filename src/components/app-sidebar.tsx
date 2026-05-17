@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Music2Icon } from "lucide-react";
 
 import { NavModules } from "@/components/nav-modules";
+import { NavSettings } from "@/components/nav-settings";
 import { siteConfig } from "@/config/site";
 import {
   Sidebar,
@@ -36,6 +37,7 @@ export function AppSidebar() {
       </SidebarHeader>
       <SidebarContent>
         <NavModules />
+        <NavSettings />
       </SidebarContent>
       <SidebarRail />
     </Sidebar>
