@@ -11,7 +11,6 @@ export type AppModule = {
   title: string;
   href: string;
   icon: LucideIcon;
-  description: string;
   enabled: boolean;
   badge?: string;
 };
@@ -22,7 +21,6 @@ export const appModules: AppModule[] = [
     title: "Inicio",
     href: "/",
     icon: HomeIcon,
-    description: "Resumen de la plataforma",
     enabled: true,
   },
   {
@@ -30,7 +28,6 @@ export const appModules: AppModule[] = [
     title: "Metrónomo",
     href: "/metronome",
     icon: TimerIcon,
-    description: "Practica con tempo preciso",
     enabled: true,
   },
   {
@@ -38,7 +35,6 @@ export const appModules: AppModule[] = [
     title: "Acordes",
     href: "/chords",
     icon: GuitarIcon,
-    description: "Aprende formas y progresiones",
     enabled: false,
     badge: "Próximamente",
   },
@@ -47,7 +43,6 @@ export const appModules: AppModule[] = [
     title: "Quiz",
     href: "/quiz",
     icon: HelpCircleIcon,
-    description: "Pon a prueba tu teoría musical",
     enabled: false,
     badge: "Próximamente",
   },

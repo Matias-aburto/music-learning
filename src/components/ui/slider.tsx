@@ -1,6 +1,52 @@
 import { Slider as SliderPrimitive } from "@base-ui/react/slider"
+import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
+
+const sliderControlVariants = cva(
+  "relative flex w-full touch-none select-none items-center data-disabled:opacity-50 data-vertical:h-full data-vertical:min-h-40 data-vertical:w-auto data-vertical:flex-col",
+  {
+    variants: {
+      size: {
+        default: "py-2",
+        lg: "min-h-14 py-5",
+      },
+    },
+    defaultVariants: {
+      size: "default",
+    },
+  },
+)
+
+const sliderTrackVariants = cva(
+  "relative grow overflow-hidden rounded-full bg-muted select-none data-vertical:h-full data-vertical:w-1 data-horizontal:w-full",
+  {
+    variants: {
+      size: {
+        default: "data-horizontal:h-1",
+        lg: "data-horizontal:h-3",
+      },
+    },
+    defaultVariants: {
+      size: "default",
+    },
+  },
+)
+
+const sliderThumbVariants = cva(
+  "relative block shrink-0 rounded-full border border-ring bg-white ring-ring/50 transition-[color,box-shadow] select-none focus-visible:outline-hidden disabled:pointer-events-none disabled:opacity-50 after:absolute after:rounded-full hover:ring-3 focus-visible:ring-3 active:ring-3",
+  {
+    variants: {
+      size: {
+        default: "size-4 after:-inset-3",
+        lg: "size-6 after:-inset-5",
+      },
+    },
+    defaultVariants: {
+      size: "default",
+    },
+  },
+)
 
 function Slider({
   className,
@@ -8,8 +54,9 @@ function Slider({
   value,
   min = 0,
   max = 100,
+  size = "default",
   ...props
-}: SliderPrimitive.Root.Props) {
+}: SliderPrimitive.Root.Props & VariantProps<typeof sliderControlVariants>) {
   const _values = Array.isArray(value)
     ? value
     : Array.isArray(defaultValue)
@@ -27,10 +74,12 @@ function Slider({
       thumbAlignment="edge"
       {...props}
     >
-      <SliderPrimitive.Control className="relative flex w-full touch-none items-center select-none data-disabled:opacity-50 data-vertical:h-full data-vertical:min-h-40 data-vertical:w-auto data-vertical:flex-col">
+      <SliderPrimitive.Control
+        className={sliderControlVariants({ size })}
+      >
         <SliderPrimitive.Track
           data-slot="slider-track"
-          className="relative grow overflow-hidden rounded-full bg-muted select-none data-horizontal:h-1 data-horizontal:w-full data-vertical:h-full data-vertical:w-1"
+          className={sliderTrackVariants({ size })}
         >
           <SliderPrimitive.Indicator
             data-slot="slider-range"
@@ -41,7 +90,7 @@ function Slider({
           <SliderPrimitive.Thumb
             data-slot="slider-thumb"
             key={index}
-            className="relative block size-3 shrink-0 rounded-full border border-ring bg-white ring-ring/50 transition-[color,box-shadow] select-none after:absolute after:-inset-2 hover:ring-3 focus-visible:ring-3 focus-visible:outline-hidden active:ring-3 disabled:pointer-events-none disabled:opacity-50"
+            className={sliderThumbVariants({ size })}
           />
         ))}
       </SliderPrimitive.Control>

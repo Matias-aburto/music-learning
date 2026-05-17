@@ -14,9 +14,9 @@ export function AppShell({ breadcrumbs, children }: AppShellProps) {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <SidebarInset>
+      <SidebarInset className="min-h-svh">
         <PageHeader breadcrumbs={breadcrumbs} />
-        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">{children}</div>
+        <div className="flex min-h-0 flex-1 flex-col p-4 pt-0">{children}</div>
       </SidebarInset>
     </SidebarProvider>
   );

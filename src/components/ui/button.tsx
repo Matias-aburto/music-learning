@@ -1,5 +1,7 @@
 import { Button as ButtonPrimitive } from "@base-ui/react/button"
 import { cva, type VariantProps } from "class-variance-authority"
+import Link from "next/link"
+import type { ComponentProps } from "react"
 
 import { cn } from "@/lib/utils"
 
@@ -55,4 +57,14 @@ function Button({
   )
 }
 
-export { Button, buttonVariants }
+type ButtonLinkProps = Omit<ComponentProps<typeof Button>, "render" | "nativeButton"> & {
+  href: string
+}
+
+function ButtonLink({ href, ...props }: ButtonLinkProps) {
+  return (
+    <Button nativeButton={false} render={<Link href={href} />} {...props} />
+  )
+}
+
+export { Button, ButtonLink, buttonVariants }

@@ -14,6 +14,8 @@ export const TIME_SIGNATURES: TimeSignature[] = [
 export const BPM_MIN = 40;
 export const BPM_MAX = 240;
 export const BPM_DEFAULT = 120;
+export const BPM_STEP = 5;
+export const VOLUME_STEP = 0.05;
 
 export type MetronomeState = {
   isPlaying: boolean;
