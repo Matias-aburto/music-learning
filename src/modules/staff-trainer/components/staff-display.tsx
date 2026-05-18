@@ -2,7 +2,15 @@
 
 import { cn } from "@/lib/utils";
 import type { NoteName, RoundResult } from "@/modules/note-game/types";
+import {
+  BASS_STAFF_BOTTOM_LINE_Y,
+  SINGLE_STAFF_VIEW_HEIGHT_BASS,
+  SINGLE_STAFF_VIEW_HEIGHT_TREBLE,
+  SINGLE_STAFF_VIEW_WIDTH,
+  TREBLE_STAFF_BOTTOM_LINE_Y,
+} from "../lib/staff-metrics";
 import type { StaffClef } from "../types";
+import { StaffStartBarline } from "./staff-barline";
 import { StaffNote } from "./staff-note";
 import { SingleStaffDisplay } from "./single-staff-display";
 
@@ -16,9 +24,6 @@ type StaffDisplayProps = {
   className?: string;
 };
 
-const VIEW_WIDTH = 300;
-const VIEW_HEIGHT = 120;
-const BOTTOM_LINE_Y = 92;
 const TARGET_NOTE_X = 148;
 const PLAYED_NOTE_X = 208;
 
@@ -31,6 +36,13 @@ export function StaffDisplay({
   playedNoteName,
   className,
 }: StaffDisplayProps) {
+  const bottomLineY =
+    clef === "treble" ? TREBLE_STAFF_BOTTOM_LINE_Y : BASS_STAFF_BOTTOM_LINE_Y;
+  const viewHeight =
+    clef === "treble"
+      ? SINGLE_STAFF_VIEW_HEIGHT_TREBLE
+      : SINGLE_STAFF_VIEW_HEIGHT_BASS;
+
   const played =
     result === "wrong" && playedMidi != null && playedNoteName != null
       ? { midi: playedMidi, name: playedNoteName }
@@ -46,7 +58,7 @@ export function StaffDisplay({
 
   return (
     <svg
-      viewBox={`0 0 ${VIEW_WIDTH} ${VIEW_HEIGHT}`}
+      viewBox={`0 0 ${SINGLE_STAFF_VIEW_WIDTH} ${viewHeight}`}
       className={cn(
         "h-auto w-full max-w-[min(100%,20rem)] text-foreground",
         className,
@@ -56,15 +68,16 @@ export function StaffDisplay({
       <SingleStaffDisplay
         clef={clef}
         midiNotes={[]}
-        bottomLineY={BOTTOM_LINE_Y}
+        bottomLineY={bottomLineY}
       />
+      <StaffStartBarline bottomLineY={bottomLineY} />
 
       <StaffNote
         midiNote={midiNote}
         noteName={noteName}
         clef={clef}
         x={played ? TARGET_NOTE_X : 168}
-        bottomLineY={BOTTOM_LINE_Y}
+        bottomLineY={bottomLineY}
         tone={targetTone}
       />
 
@@ -74,7 +87,7 @@ export function StaffDisplay({
           noteName={played.name}
           clef={clef}
           x={PLAYED_NOTE_X}
-          bottomLineY={BOTTOM_LINE_Y}
+          bottomLineY={bottomLineY}
           tone="wrong"
         />
       ) : null}

@@ -8,6 +8,7 @@ const NOTE_NAME_TO_PITCH_CLASS: Record<NoteName, number> = {
   "D#": 3,
   Eb: 3,
   E: 4,
+  "E#": 5,
   F: 5,
   "F#": 6,
   Gb: 6,
@@ -18,6 +19,9 @@ const NOTE_NAME_TO_PITCH_CLASS: Record<NoteName, number> = {
   "A#": 10,
   Bb: 10,
   B: 11,
+  "B#": 0,
+  Cb: 11,
+  Fb: 4,
 };
 
 const PITCH_CLASS_TO_SHARP: Record<number, NoteName> = {

@@ -2,6 +2,7 @@ import type { LucideIcon } from "lucide-react";
 import {
   GuitarIcon,
   HomeIcon,
+  KeyRoundIcon,
   KeyboardMusicIcon,
   Music2Icon,
   PianoIcon,
@@ -59,6 +60,13 @@ export const appModules: AppModule[] = [
     title: "Piano",
     href: "/piano",
     icon: KeyboardMusicIcon,
+    enabled: true,
+  },
+  {
+    id: "key-signatures",
+    title: "Armaduras",
+    href: "/key-signatures",
+    icon: KeyRoundIcon,
     enabled: true,
   },
 ];

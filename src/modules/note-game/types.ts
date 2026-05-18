@@ -8,9 +8,9 @@ export const NATURAL_NOTES = [
   "B",
 ] as const;
 
-export const SHARP_NOTES = ["C#", "D#", "F#", "G#", "A#"] as const;
+export const SHARP_NOTES = ["C#", "D#", "E#", "F#", "G#", "A#", "B#"] as const;
 
-export const FLAT_NOTES = ["Db", "Eb", "Gb", "Ab", "Bb"] as const;
+export const FLAT_NOTES = ["Cb", "Db", "Eb", "Fb", "Gb", "Ab", "Bb"] as const;
 
 export const CHROMATIC_NOTES = [
   "C",

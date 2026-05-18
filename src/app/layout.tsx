@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Nunito } from "next/font/google";
+import { Noto_Music, Nunito } from "next/font/google";
 
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { siteConfig } from "@/config/site";
@@ -9,6 +9,12 @@ import "./globals.css";
 const nunito = Nunito({
   variable: "--font-nunito",
   subsets: ["latin", "latin-ext"],
+  display: "swap",
+});
+
+const notoMusic = Noto_Music({
+  weight: "400",
+  variable: "--font-noto-music",
   display: "swap",
 });
 
@@ -28,7 +34,7 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${nunito.variable} h-full antialiased`}
+      className={`${nunito.variable} ${notoMusic.variable} h-full antialiased`}
     >
       <body className={`${nunito.className} flex min-h-full flex-col`}>
         <TooltipProvider>{children}</TooltipProvider>

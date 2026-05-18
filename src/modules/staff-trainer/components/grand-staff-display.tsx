@@ -1,10 +1,13 @@
 import { cn } from "@/lib/utils";
+import {
+  BASS_STAFF_BOTTOM_LINE_Y,
+  GRAND_STAFF_VIEW_HEIGHT,
+  GRAND_STAFF_VIEW_WIDTH,
+  TREBLE_STAFF_BOTTOM_LINE_Y,
+} from "../lib/staff-metrics";
+import { StaffSystemBarline } from "./staff-barline";
 import { SingleStaffDisplay } from "./single-staff-display";
 
-const VIEW_WIDTH = 300;
-const VIEW_HEIGHT = 200;
-const TREBLE_BOTTOM_LINE_Y = 58;
-const BASS_BOTTOM_LINE_Y = 148;
 const MIDDLE_C_MIDI = 60;
 
 type GrandStaffDisplayProps = {
@@ -22,7 +25,7 @@ export function GrandStaffDisplay({
 
   return (
     <svg
-      viewBox={`0 0 ${VIEW_WIDTH} ${VIEW_HEIGHT}`}
+      viewBox={`0 0 ${GRAND_STAFF_VIEW_WIDTH} ${GRAND_STAFF_VIEW_HEIGHT}`}
       className={cn(
         "h-auto w-full max-w-[min(100%,22rem)] text-foreground",
         className,
@@ -32,12 +35,16 @@ export function GrandStaffDisplay({
       <SingleStaffDisplay
         clef="treble"
         midiNotes={trebleNotes}
-        bottomLineY={TREBLE_BOTTOM_LINE_Y}
+        bottomLineY={TREBLE_STAFF_BOTTOM_LINE_Y}
       />
       <SingleStaffDisplay
         clef="bass"
         midiNotes={bassNotes}
-        bottomLineY={BASS_BOTTOM_LINE_Y}
+        bottomLineY={BASS_STAFF_BOTTOM_LINE_Y}
+      />
+      <StaffSystemBarline
+        trebleBottomLineY={TREBLE_STAFF_BOTTOM_LINE_Y}
+        bassBottomLineY={BASS_STAFF_BOTTOM_LINE_Y}
       />
     </svg>
   );

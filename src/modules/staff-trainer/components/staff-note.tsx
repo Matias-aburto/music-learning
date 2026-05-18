@@ -8,6 +8,7 @@ import {
   stemGoesDown,
 } from "../lib/staff-layout";
 import type { StaffClef } from "../types";
+import { MUSIC_CLEF_FONT } from "./single-staff-display";
 
 function accidentalSymbol(noteName: NoteName) {
   if (noteName.includes("#")) return "♯";
@@ -78,10 +79,11 @@ export function StaffNote({
       {accidental ? (
         <text
           x={x - 22}
-          y={noteY + 5}
+          y={noteY}
+          dominantBaseline="middle"
           fontSize={20}
+          fontFamily={MUSIC_CLEF_FONT}
           className={cn(
-            "font-serif",
             tone === "muted" && "fill-foreground/45",
             tone === "wrong" && "fill-destructive",
             tone === "active" && "fill-primary",
