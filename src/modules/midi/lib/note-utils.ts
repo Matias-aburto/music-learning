@@ -40,16 +40,40 @@ export function noteNameToPitchClass(name: NoteName) {
 }
 
 export function parseNoteOn(data: Uint8Array) {
+  const parsed = parseMidiMessage(data);
+  if (parsed?.type === "on") {
+    return { note: parsed.note, velocity: parsed.velocity };
+  }
+  return null;
+}
+
+export function parseMidiMessage(data: Uint8Array) {
   const status = data[0];
+  const command = status & 0xf0;
   const note = data[1];
   const velocity = data[2] ?? 0;
 
-  const isNoteOn = (status & 0xf0) === 0x90 && velocity > 0;
-  const isNoteOnRunning = (status & 0xf0) === 0x80 && velocity > 0;
+  if (command === 0x90 && velocity > 0) {
+    return { type: "on" as const, note, velocity };
+  }
 
-  if (!isNoteOn && !isNoteOnRunning) return null;
+  if (command === 0x90 && velocity === 0) {
+    return { type: "off" as const, note };
+  }
 
-  return { note, velocity };
+  if (command === 0x80) {
+    return { type: "off" as const, note };
+  }
+
+  return null;
+}
+
+export function midiToLabel(midiNote: number) {
+  return `${midiToNoteName(midiNote)}${midiToOctave(midiNote)}`;
+}
+
+export function midiToOctave(midiNote: number) {
+  return Math.floor(midiNote / 12) - 1;
 }
 
 export function midiToPitchClass(midiNote: number) {

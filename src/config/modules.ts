@@ -2,6 +2,7 @@ import type { LucideIcon } from "lucide-react";
 import {
   GuitarIcon,
   HomeIcon,
+  KeyboardMusicIcon,
   Music2Icon,
   PianoIcon,
   TimerIcon,
@@ -51,6 +52,13 @@ export const appModules: AppModule[] = [
     title: "Pentagrama",
     href: "/staff",
     icon: Music2Icon,
+    enabled: true,
+  },
+  {
+    id: "piano",
+    title: "Piano",
+    href: "/piano",
+    icon: KeyboardMusicIcon,
     enabled: true,
   },
 ];
