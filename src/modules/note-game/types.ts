@@ -61,6 +61,8 @@ export type DifficultyId = "easy" | "intermediate" | "hard";
 export type Difficulty = {
   id: DifficultyId;
   label: string;
+  /** Barras de nivel pintadas (1–3 de 3). */
+  bars: 1 | 2 | 3;
   roundDurationMs: number;
   notes: readonly NoteName[];
 };

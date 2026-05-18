@@ -8,18 +8,21 @@ export const DIFFICULTIES: Difficulty[] = [
   {
     id: "easy",
     label: "Fácil",
+    bars: 1,
     roundDurationMs: 5000,
     notes: NATURAL_NOTES,
   },
   {
     id: "intermediate",
     label: "Intermedio",
+    bars: 2,
     roundDurationMs: 5000,
     notes: CHROMATIC_NOTES_WITH_FLATS,
   },
   {
     id: "hard",
     label: "Difícil",
+    bars: 3,
     roundDurationMs: 3000,
     notes: CHROMATIC_NOTES_WITH_FLATS,
   },

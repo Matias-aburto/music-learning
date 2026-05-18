@@ -129,6 +129,7 @@ export function StaffTrainerPanel() {
           isActive={isActive}
           onStart={() => void start()}
           onReset={resetToIdle}
+          showMidiLink={false}
         />
       </div>
     </div>

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { DIFFICULTIES } from "../constants";
 import type { DifficultyId } from "../types";
+import { DifficultyBars } from "./difficulty-bars";
 
 type DifficultyPickerProps = {
   value: DifficultyId;
@@ -39,7 +40,10 @@ export function DifficultyPicker({
             )}
             onClick={() => onChange(difficulty.id)}
           >
-            {difficulty.label}
+            <span className="flex items-center justify-center gap-2">
+              <DifficultyBars filled={difficulty.bars} active={isActive} />
+              {difficulty.label}
+            </span>
           </Button>
         );
       })}

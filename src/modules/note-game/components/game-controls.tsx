@@ -11,6 +11,7 @@ type GameControlsProps = {
   isActive: boolean;
   onStart: () => void;
   onReset: () => void;
+  showMidiLink?: boolean;
 };
 
 export function GameControls({
@@ -19,6 +20,7 @@ export function GameControls({
   isActive,
   onStart,
   onReset,
+  showMidiLink = true,
 }: GameControlsProps) {
   const isFinished = phase === "finished";
 
@@ -65,7 +67,7 @@ export function GameControls({
         </Button>
       )}
 
-      {midiStatus === "denied" || midiStatus === "idle" ? (
+      {showMidiLink && (midiStatus === "denied" || midiStatus === "idle") ? (
         <ButtonLink
           href="/settings/midi"
           variant="outline"
